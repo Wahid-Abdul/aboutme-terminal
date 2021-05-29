@@ -1,5 +1,5 @@
 
-const dragElement = (elm) => {
+const dragElement = (elm, elmContainer) => {
     var pos1, pos2, pos3, pos4;
     elm.onmousedown = dragMouseDown;
   
@@ -22,8 +22,8 @@ const dragElement = (elm) => {
       //update
       pos3 = e.clientX;
       pos4 = e.clientY;
-      elm.style.top = elm.offsetTop - pos2 + "px";
-      elm.style.left = elm.offsetLeft - pos1 + "px";
+      elmContainer.style.top = elmContainer.offsetTop - pos2 + "px";
+      elmContainer.style.left = elmContainer.offsetLeft - pos1 + "px";
     }
   
     function dragMouseUp() {
