@@ -10,7 +10,15 @@ const TerminalTitle = () => {
     })
     return (
         <div className="header" id="dragTerminalTitle">
-            Terminal
+            <div className="actionButtons">
+                <span className="actionButton">x</span>
+                <span className="actionButton">i</span>
+                <span className="actionButton">o</span>
+            </div>
+            <div className="titleContainer">
+                title
+            </div>
+
         </div>
     )
 }

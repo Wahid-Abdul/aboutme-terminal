@@ -1,4 +1,27 @@
 .header {
+    cursor: move;
     background-color: brown;
-    height: 20px;
+    color: #fff;
+    height: 10%;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    display: flex;
+    flex-direction: row;
+}
+
+.actionButtons {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.titleContainer {
+    flex: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.actionButton {
+    cursor: pointer;
 }

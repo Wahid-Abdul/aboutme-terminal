@@ -1,5 +1,7 @@
 import "./TerminalBody.css"
-const TerminalBody= () => {
-    return(<div></div>)
+const TerminalBody = () => {
+    return (
+        <div className="terminalBody"></div>
+    )
 }
 export default TerminalBody;
