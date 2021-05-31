@@ -13,10 +13,19 @@ const TerminalBody = () => {
         inputRef.current.focus()
     }
 
+    const onChangeText = (e) => {
+
+        if (e.keyCode === 9) {
+            //on tab press
+            e.preventDefault();
+        }
+
+    }
+
     return (
         <div className="terminalBody" onClick={onClickBody}>
             <div>
-                $<input className="commandInput" type="text" ref={inputRef} />
+                $<input className="commandInput" type="text" ref={inputRef} onKeyDown={onChangeText} />
             </div>
         </div>
     )
