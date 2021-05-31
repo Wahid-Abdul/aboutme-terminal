@@ -1,0 +1,14 @@
+.terminalBody {
+    height: 90%;
+    background-color: black;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+    color: white
+}
+.commandInput {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color:white;
+    font-size: 12pt;
+}
