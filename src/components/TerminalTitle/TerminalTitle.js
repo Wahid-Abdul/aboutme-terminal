@@ -16,7 +16,7 @@ const TerminalTitle = () => {
                 <span className="actionButton">o</span>
             </div>
             <div className="titleContainer">
-                title
+                Terminal
             </div>
 
         </div>
