@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { KEY_CODES } from "../../utils/constants";
 import "./TerminalBody.css"
 const TerminalBody = () => {
     const inputRef = React.useRef();
@@ -15,11 +16,19 @@ const TerminalBody = () => {
 
     const onChangeText = (e) => {
 
-        if (e.keyCode === 9) {
-            //on tab press
-            e.preventDefault();
-        }
+        const keyCode = e.keyCode
+        switch (keyCode) {
+            case KEY_CODES.TAB:
+                e.preventDefault();
+                break;
 
+            case KEY_CODES.ENTER:
+                e.preventDefault();
+                break;
+
+            default:
+                break;
+        }
     }
 
     return (
