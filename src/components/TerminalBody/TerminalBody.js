@@ -35,8 +35,10 @@ const TerminalBody = () => {
 
     return (
         <div className="terminalBody" onClick={onClickBody}>
-            <div>
-                $<input className="commandInput"
+            <div className="textContainer">
+                $&nbsp;{fullCommand}
+                <input className="commandInput"
+                    type="hidden"
                     type="text"
                     onChange={(e) => setFullCommand(e.target.value)}
                     ref={inputRef} onKeyDown={onChangeText}

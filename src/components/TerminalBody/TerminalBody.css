@@ -11,5 +11,9 @@
     border: none;
     color:white;
     font-size: 12pt;
-    width: 90%
+    width: 0;
+    height: 0
+}
+.textContainer {
+    overflow-wrap: break-word;
 }
