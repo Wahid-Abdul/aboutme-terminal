@@ -1,7 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { KEY_CODES } from "../../utils/constants";
 import "./TerminalBody.css"
 const TerminalBody = () => {
+
+    const [fullCommand, setFullCommand] = useState("")
     const inputRef = React.useRef();
     useEffect(() => {
         focusInput();
@@ -34,7 +36,11 @@ const TerminalBody = () => {
     return (
         <div className="terminalBody" onClick={onClickBody}>
             <div>
-                $<input className="commandInput" type="text" ref={inputRef} onKeyDown={onChangeText} />
+                $<input className="commandInput"
+                    type="text"
+                    onChange={(e) => setFullCommand(e.target.value)}
+                    ref={inputRef} onKeyDown={onChangeText}
+                />
             </div>
         </div>
     )
