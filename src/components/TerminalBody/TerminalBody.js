@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { KEY_CODES } from "../../utils/constants";
+import { COMMANDS, KEY_CODES } from "../../utils/constants";
 import "./TerminalBody.css"
 const TerminalBody = () => {
 
     const [fullCommand, setFullCommand] = useState("")
     const [currentPath, setCurrentPath] = useState("/")
     const [history, setHistory] = useState([])
+    useEffect(() => {
+        focusInput();
+    }, [])
 
     const inputRef = React.useRef();
 
@@ -18,9 +21,6 @@ const TerminalBody = () => {
         });
     }
 
-    useEffect(() => {
-        focusInput();
-    }, [])
     const onClickBody = () => {
         focusInput();
     }
@@ -32,6 +32,14 @@ const TerminalBody = () => {
     const executeCommand = () => {
         const [command, argument, options] = fullCommand.split(" ")
         console.log(command, argument, options)
+        switch (command) {
+            case COMMANDS.CLEAR:
+                setHistory([]);
+                break;
+
+            default:
+                break;
+        }
     }
 
     const recordHistory = () => {

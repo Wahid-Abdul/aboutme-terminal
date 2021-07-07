@@ -3,6 +3,12 @@ const KEY_CODES = {
     ENTER: 13,
 }
 
+const COMMANDS = {
+    CLEAR: "clear",
+    CD: "cd",
+}
+
 export {
-    KEY_CODES
+    KEY_CODES,
+    COMMANDS
 }
