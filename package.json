@@ -1,8 +1,8 @@
 {
   "name": "aboutme-terminal",
-  "homepage": "https://wahid-abdul.github.io/aboutme-terminal/",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://wahid-abdul.github.io/aboutme-terminal/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
