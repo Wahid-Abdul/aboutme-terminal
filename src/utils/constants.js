@@ -6,6 +6,7 @@ const KEY_CODES = {
 const COMMANDS = {
     CLEAR: "clear",
     CD: "cd",
+    LIST: "ls",
 }
 
 export {

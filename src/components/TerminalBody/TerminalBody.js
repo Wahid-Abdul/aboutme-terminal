@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { COMMANDS, KEY_CODES } from "../../utils/constants";
 import "./TerminalBody.css"
+import root from "../../assets/data/root"
+
 const TerminalBody = () => {
 
     const [fullCommand, setFullCommand] = useState("")
     const [currentPath, setCurrentPath] = useState("/")
     const [history, setHistory] = useState([])
+    const [list, setList] = useState([])
     useEffect(() => {
         focusInput();
     }, [])
@@ -29,6 +32,16 @@ const TerminalBody = () => {
         inputRef.current.focus()
     }
 
+    const listCMD = () => {
+        const children = root[currentPath].children;
+        const displayList = children.map( (item) => {
+            return item.subpath
+        })
+        console.log(children, displayList)
+        recordHistory(displayList)
+        return displayList;
+    }
+
     const executeCommand = () => {
         const [command, argument, options] = fullCommand.split(" ")
         console.log(command, argument, options)
@@ -36,18 +49,27 @@ const TerminalBody = () => {
             case COMMANDS.CLEAR:
                 setHistory([]);
                 break;
+            case COMMANDS.LIST:
+                recordHistory()
+                setList(listCMD());
+                break;
 
             default:
                 break;
         }
     }
 
-    const recordHistory = () => {
+    const recordHistory = (displayList = null) => {
+
         const currentDetails = {
             path: currentPath,
             command: fullCommand,
         }
-        setHistory([...history, currentDetails])
+        let finalHistory = [...history, currentDetails]
+        if (displayList) {
+            finalHistory = [...finalHistory, displayList]
+        }
+        setHistory(finalHistory)
         setFullCommand("")
     }
 
@@ -61,7 +83,7 @@ const TerminalBody = () => {
 
             case KEY_CODES.ENTER:
                 e.preventDefault();
-                recordHistory(currentPath, fullCommand)
+                recordHistory()
                 executeCommand();
                 break;
 
@@ -72,7 +94,12 @@ const TerminalBody = () => {
         scrollToBottom(terminalBody)
     }
 
-    const renderHistory = history.map((item) => <>{`${item.path}$ ${item.command}`}<br /></>)
+    const renderHistory = history.map((item) => {
+        return Array.isArray(item) ?
+            <>{item}<br /></>
+            :
+            <>{`${item.path}$\u00A0${item.command}`}<br /></>
+    })
 
     return (
         <div className="terminalBody" onClick={onClickBody} id="terminalBody">
