@@ -20,6 +20,7 @@ const root = {
                 ]                
             },
             {
+                path: "/languages/",
                 subpath: "languages/",
                 directory: true,
                 children:[
@@ -30,7 +31,7 @@ const root = {
                     },
                     {
                         path: "/languages/javascript",
-                        subpath: "javascript    ",
+                        subpath: "javascript",
                         directory: false
                     },
                     {
