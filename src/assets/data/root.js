@@ -1,5 +1,5 @@
 const root = {
-    "/": {
+        path: "/",
         directory: true,
         children: [
             {
@@ -8,13 +8,25 @@ const root = {
                 directory: true,
                 children:[
                     {
-                        path: "/hobbies/reading",
-                        subpath: "reading",
-                        directory: false
+                        path: "/hobbies/reading/",
+                        subpath: "reading/",
+                        directory: true,
+                        children:[
+                            {
+                                path: "/hobbies/reading/novels",
+                                subpath: "novels",
+                                directory: true
+                            },
+                            {
+                                path: "/hobbies/reading/books",
+                                subpath: "books",
+                                directory: false
+                            }
+                        ]       
                     },
                     {
-                        path: "/hobbies/gaming",
-                        subpath: "gaming",
+                        path: "/hobbies/gaming/",
+                        subpath: "gaming/",
                         directory: false
                     }
                 ]                
@@ -43,6 +55,5 @@ const root = {
             }
         ]
     }
-}
 
 export default root;

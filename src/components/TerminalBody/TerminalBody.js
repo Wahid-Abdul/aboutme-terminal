@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { COMMANDS, KEY_CODES } from "../../utils/constants";
 import "./TerminalBody.css"
 import root from "../../assets/data/root"
+import { areEqualStrings } from "../../utils/Utils";
 
 const TerminalBody = () => {
 
@@ -32,12 +33,36 @@ const TerminalBody = () => {
         inputRef.current.focus()
     }
 
-    const listCMD = () => {
-        const children = root[currentPath].children;
-        const displayList = children.map( (item) => {
+    const listCMD = (path = currentPath) => {
+
+        let pathList = path.split("/")
+        pathList = pathList.map( item => item + "/")
+
+        let tempPath = ""
+        let tempChildren = []
+        let tempRoot = { ...root}
+        pathList.map(item => {
+
+            tempPath += item
+
+            tempChildren && tempChildren.map(child => {
+                if (areEqualStrings(child.path, tempPath)) {
+                    console.log("CCCCCCC", item, child)
+                    tempRoot = child
+                }
+            })
+            if (item === tempRoot.path || 
+                item === tempRoot.subpath || 
+                "/" + item === tempRoot.path
+                ) {
+                tempChildren = [ ...tempRoot.children]
+            }
+
+        })
+
+        const displayList = tempChildren.map( (item) => {
             return item.subpath
         })
-        console.log(children, displayList)
         recordHistory(displayList)
         return displayList;
     }
@@ -53,10 +78,34 @@ const TerminalBody = () => {
                 recordHistory()
                 setList(listCMD());
                 break;
+            case COMMANDS.CD:
+                changeDirectory(argument)
+                break;
 
             default:
                 break;
         }
+    }
+
+    const changeDirectory = (endpath) => {
+
+        let desiredPath;
+
+        if (endpath === "..") {
+            if (currentPath === "" || currentPath === "/") {
+                desiredPath = "/";
+            }
+            else {
+                desiredPath = currentPath.slice(0, currentPath.length - 1);
+                let lastSlash = desiredPath.lastIndexOf("/")
+                desiredPath = desiredPath.slice(0, lastSlash + 1);
+            }
+        } else {
+            desiredPath = currentPath + endpath + '/'
+        }
+        setCurrentPath(desiredPath)
+        const listing = listCMD(desiredPath);
+
     }
 
     const recordHistory = (displayList = null) => {
